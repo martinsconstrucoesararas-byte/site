@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Meu Agendador Pro</title>
+    <style>
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: sans-serif; background: #f0f2f5; margin: 0; 
+            padding: 15px; padding-bottom: 200px; 
+        }
+        .header { margin-bottom: 15px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        .header h2 { margin: 0; font-size: 1.2rem; text-transform: capitalize; color: #1a1a1a; }
+        .header p { margin: 0; font-size: 0.9rem; color: #666; text-transform: capitalize; }
+
+        .list { display: flex; flex-direction: column; gap: 8px; }
+        .item { 
+            background: white; padding: 12px; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 5px solid #2563eb;
+        }
+        .item.now { border-left-color: #059669; background: #f0fdf4; font-weight: bold; border-left-width: 8px; }
+        .item.done { border-left-color: #94a3b8; opacity: 0.6; }
+        
+        .info { flex: 1; }
+        .name { font-size: 1rem; color: #1a1a1a; display: block; }
+        .name.riscado { text-decoration: line-through; color: #888; }
+        .time-label { font-size: 0.8rem; color: #666; }
+
+        .actions { display: flex; gap: 10px; align-items: center; }
+        .btn-action { font-size: 1.1rem; cursor: pointer; padding: 5px; }
+        .check-btn { 
+            width: 32px; height: 32px; border: 2px solid #cbd5e1; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; background: #fff; font-weight: bold;
+        }
+        .check-btn.active { background: #059669; color: white; border-color: #059669; }
+
+        .footer { 
+            position: fixed; bottom: 0; left: 0; right: 0; 
+            background: white; padding: 15px; border-top: 1px solid #ddd;
+            display: flex; flex-direction: column; gap: 8px; box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+        }
+        input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; outline: none; }
+        input:focus { border-color: #2563eb; }
+        .row { display: flex; gap: 8px; }
+        .row input { width: 50%; }
+        button { 
+            background: #2563eb; color: white; border: none; padding: 14px; 
+            border-radius: 8px; font-weight: bold; font-size: 16px; width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h2 id="txtDia"></h2>
+    <p id="txtMes"></p>
+</div>
+
+<div id="minhaLista" class="list"></div>
+
+<div class="footer">
+    <input type="text" id="inpNome" placeholder="O que vocÃª vai fazer?">
+    <div class="row">
+        <input type="date" id="inpData">
+        <input type="time" id="inpHora">
+    </div>
+    <button onclick="adicionar()">AGENDAR NA SEQUÃŠNCIA</button>
+</div>
+
+<script>
+    let agenda = JSON.parse(localStorage.getItem('agenda_v4')) || [];
+
+    function renderizar() {
+        const listaDiv = document.getElementById('minhaLista');
+        const agora = new Date();
+        
+        document.getElementById('txtDia').innerText = agora.toLocaleDateString('pt-BR', {weekday:'long', day:'numeric'});
+        document.getElementById('txtMes').innerText = agora.toLocaleDateString('pt-BR', {month:'long', year:'numeric'});
+
+        // Regra de repetir se nÃ£o concluiu
+        agenda.forEach(item => {
+            let dataItem = new Date(item.timestamp);
+            let hojeMeiaNoite = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate()).getTime();
+            let itemMeiaNoite = new Date(dataItem.getFullYear(), dataItem.getMonth(), dataItem.getDate()).getTime();
+
+            if (!item.concluido && itemMeiaNoite < hojeMeiaNoite) {
+                dataItem.setFullYear(agora.getFullYear(), agora.getMonth(), agora.getDate());
+                item.timestamp = dataItem.getTime();
+            }
+        });
+
+        agenda.sort((a, b) => a.timestamp - b.timestamp);
+
+        listaDiv.innerHTML = '';
+        agenda.forEach((item, index) => {
+            const dataItem = new Date(item.timestamp);
+            const diff = (dataItem - agora) / 60000;
+            
+            let classeEstilo = '';
+            if (item.concluido) classeEstilo = 'done';
+            else if (diff > -20 && diff < 20) classeEstilo = 'now';
+            
+            const dataFmt = dataItem.toLocaleDateString('pt-BR', {day:'2-digit', month:'2-digit'});
+            const horaFmt = dataItem.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+
+            listaDiv.innerHTML += `
+                <div class="item ${classeEstilo}">
+                    <div class="info">
+                        <span class="name ${item.concluido ? 'riscado' : ''}">${item.name}</span>
+                        <span class="time-label">${dataFmt} â€¢ ${horaFmt}</span>
+                    </div>
+                    <div class="actions">
+                        <span class="btn-action" onclick="editar(${index})">âœï¸</span>
+                        <span class="btn-action" onclick="excluir(${index})">ðŸ—‘ï¸</span>
+                        <div class="check-btn ${item.concluido ? 'active' : ''}" onclick="toggle(${index})">
+                            ${item.concluido ? 'âœ“' : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        localStorage.setItem('agenda_v4', JSON.stringify(agenda));
+    }
+
+    function adicionar() {
+        const nome = document.getElementById('inpNome').value;
+        const data = document.getElementById('inpData').value;
+        const hora = document.getElementById('inpHora').value;
+
+        if (!nome || !data || !hora) {
+            alert("Preencha o nome, data e hora!");
+            return;
+        }
+
+        const pD = data.split('-');
+        const pH = hora.split(':');
+        const finalData = new Date(pD[0], pD[1]-1, pD[2], pH[0], pH[1]);
+
+        agenda.push({
+            name: nome,
+            timestamp: finalData.getTime(),
+            concluido: false
+        });
+
+        document.getElementById('inpNome').value = '';
+        renderizar();
+    }
+
+    function toggle(i) {
+        agenda[i].concluido = !agenda[i].concluido;
+        renderizar();
+    }
+
+    function excluir(i) {
+        if(confirm("Deseja excluir este evento?")) {
+            agenda.splice(i, 1);
+            renderizar();
+        }
+    }
+
+    function editar(i) {
+        const item = agenda[i];
+        const dt = new Date(item.timestamp);
+        
+        document.getElementById('inpNome').value = item.name;
+        document.getElementById('inpData').value = dt.toISOString().split('T')[0];
+        document.getElementById('inpHora').value = dt.toTimeString().slice(0,5);
+        
+        agenda.splice(i, 1); // Remove o antigo para o novo entrar no lugar ao clicar em agendar
+        renderizar();
+        document.getElementById('inpNome').focus();
+    }
+
+    // Setup campos
+    const d = new Date();
+    document.getElementById('inpData').value = d.toISOString().split('T')[0];
+    document.getElementById('inpHora').value = d.toTimeString().slice(0,5);
+
+    renderizar();
+    setInterval(renderizar, 30000);
+</script>
+
+</body>
+</html> 
