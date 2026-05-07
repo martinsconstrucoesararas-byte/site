@@ -598,7 +598,7 @@ header {
 
 .logo-img {
   /* Ajuste a altura do logo para melhor exibição da nova imagem sem distorcer a proporção */
-  height: 80px;
+  height: 120px;
   width: auto;
   margin-right: 0.5rem;
 }
