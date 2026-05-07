@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Martins Construções • Contato</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <img src="assets/images/logo_martinsconstrucoes.jpg" alt="Martins Construções logo" class="logo-img" />
+        </div>
+        <nav>
+          <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="about.html">Quem Somos</a></li>
+            <li><a href="services.html">Serviços</a></li>
+            <li><a href="projects.html">Projetos</a></li>
+            <li><a href="contact.html">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="page-header">
+        <div class="container">
+          <img src="assets/images/logo_martinsconstrucoes.jpg" alt="Martins Construções logo" class="header-logo" />
+        </div>
+      </section>
+      <section class="contact-section">
+        <div class="container contact-content">
+          <div class="contact-info">
+            <h2>Informações de Contato</h2>
+            <p class="contact-item">
+              <i class="fas fa-map-marker-alt"></i> Araras/SP
+            </p>
+            <p class="contact-item">
+              <i class="fas fa-phone"></i> (19) 98306-8594
+            </p>
+            <p class="contact-item">
+              <i class="fas fa-envelope"></i> martins.construcoes.araras@gmail.com.br
+            </p>
+            <p>Sinta-se à vontade para nos ligar, enviar um email ou preencher o formulário ao lado. Retornaremos o mais breve possível.</p>
+            <p>Construímos seus sonhos em estruturas sólidas. Sua casa nova merece o melhor e a Martins Construções oferece soluções completas com um olhar inovador.</p>
+          </div>
+          <div class="contact-form">
+            <h2>Envie uma mensagem</h2>
+            <form id="contactForm" action="" method="post">
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" />
+              </div>
+              <div class="form-group">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn primary-btn">Enviar</button>
+            </form>
+            <div id="formResult" class="form-result"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container footer-content">
+        <img src="assets/images/logo-martins.jpg" alt="Logo Martins Construções" class="logo-footer" />
+        <p>&copy; 2025 Martins Construções. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
