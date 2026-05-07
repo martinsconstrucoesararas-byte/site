@@ -1,1 +1,694 @@
+/*
+ * Martins Construções - Estilos principais
+ *
+ * Baseado na paleta de cores do logotipo fornecido. Este arquivo define
+ * variáveis de cor para facilitar ajustes futuros. O layout foi pensado
+ * para oferecer uma navegação agradável em diferentes tamanhos de tela.
+ */
 
+/* Reset simples para remover margens e definir box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* Paleta de cores inspirada no logo */
+:root {
+  --primary-color: #1f513b; /* Verde escuro */
+  --secondary-color: #679e8e; /* Verde médio */
+  --accent-color: #87b6a6; /* Verde claro */
+  --bg-color: #f7f3f1; /* Bege claro */
+  --text-color: #333333;
+  --light-gray: #e5e5e5;
+}
+
+/* Containers para centralizar o conteúdo */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: var(--bg-color);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+/* Navegação */
+.nav {
+  position: relative;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero {
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(31, 81, 59, 0.85),
+    rgba(103, 158, 142, 0.85)
+  ),
+    url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 5rem 0;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.primary-btn {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-color);
+}
+
+/* Features Section */
+.features {
+  padding: 3rem 0;
+  background-color: var(--bg-color);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background-color: #fff;
+  border: 1px solid var(--light-gray);
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Page headers */
+.page-header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* About section */
+.about-section {
+  padding: 3rem 0;
+  background-color: #fff;
+  line-height: 1.8;
+}
+
+.about-section p + p {
+  margin-top: 1rem;
+}
+
+/* Services page styles */
+.services-list {
+  padding: 3rem 0;
+  background-color: var(--bg-color);
+}
+
+.service-item {
+  margin-bottom: 2rem;
+}
+
+.service-item h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Projects page styles */
+.project-gallery {
+  padding: 3rem 0;
+  background-color: #fff;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: #fff;
+  border: 1px solid var(--light-gray);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-info {
+  padding: 1rem;
+}
+
+.project-info h3 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.project-info p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Contact page styles */
+.contact-section {
+  padding: 3rem 0;
+  background-color: var(--bg-color);
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.contact-info {
+  background-color: #fff;
+  border: 1px solid var(--light-gray);
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  margin-bottom: 0.7rem;
+  color: #555;
+}
+
+.contact-form {
+  background-color: #fff;
+  border: 1px solid var(--light-gray);
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-result {
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-color);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-links li {
+    width: 100%;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  .nav-links a {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  .nav-links.show {
+    max-height: 300px;
+  }
+  .features-grid,
+  .gallery-grid,
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+
+/*
+ * Ajustes adicionais para telas muito pequenas (máx. 600px)
+ * Estes estilos refinam a experiência em smartphones,
+ * reduzindo o tamanho de fontes e elementos para melhor legibilidade
+ * e otimizando o espaçamento geral. Assim, o site se adapta
+ * automaticamente conforme o dispositivo utilizado.
+ */
+@media (max-width: 600px) {
+  /* Hero section: diminuir espaçamento e fontes */
+  .hero {
+    padding: 3rem 0;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  /* Botões menores em mobile */
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  /* Ajustar o tamanho do logo na seção Quem Somos */
+  .logo-about {
+    max-width: 200px;
+    padding: 0.8rem;
+  }
+  /* Reduzir preenchimento dos cartões em serviços, projetos e recursos */
+  .feature-card,
+  .service-card,
+  .project-card,
+  .contact-info,
+  .contact-form {
+    padding: 1.5rem;
+  }
+  /* Ajustar tamanho da fonte dos títulos dos cartões */
+  .feature-card h3,
+  .service-card h3,
+  .project-info h3 {
+    font-size: 1.1rem;
+  }
+  /* Ajustar formulário de contato para melhor acomodação em telas pequenas */
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+  /* Diminuir altura do logo no rodapé */
+  .logo-footer {
+    max-height: 32px;
+  }
+  /* Ajustar a altura do logo na navegação */
+  .logo-nav {
+    max-height: 45px;
+  }
+}
+
+/* ----- Custom enhancements ----- */
+/* Icons inside feature cards */
+.feature-card .icon {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Services grid and cards */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  background-color: #fff;
+  border: 1px solid var(--light-gray);
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card .icon {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* About page layout */
+.about-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.about-text p + p {
+  margin-top: 1rem;
+}
+
+/* Contact info icons */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #555;
+  margin-bottom: 0.7rem;
+}
+
+.contact-item i {
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+.logo-nav {
+  max-height: 50px;
+  height: auto;
+  width: auto;
+}
+
+/* Logo contexts */
+.logo-nav {
+  max-height: 50px;
+  height: auto;
+  width: auto;
+}
+
+.logo-about {
+  max-width: 300px;
+  width: 100%;
+  background-color: var(--bg-color);
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-footer {
+  max-height: 40px;
+  height: auto;
+  width: auto;
+  filter: grayscale(0.1) opacity(0.9);
+}
+
+/* Footer layout with logo */
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ==================== */
+/*  Ajuste de logos nos cabeçalhos das páginas */
+/*
+ * Substitui o texto das seções de cabeçalho (.page-header) por uma versão
+ * do logotipo enviada pelo cliente. A imagem é centralizada e mantém
+ * sua proporção original. O padding da seção é mantido para um
+ * espaçamento uniforme.
+ */
+
+/* Logo dentro da seção de cabeçalho */
+.header-logo {
+  height: 150px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Centralizar conteúdo da seção de cabeçalho quando houver imagem */
+.page-header {
+  text-align: center;
+}
+
+/*
+ * Menu de navegação responsivo inspirado na versão fix3.
+ * Essas regras substituem o sistema de navegação anterior.
+ */
+
+/* Torna o cabeçalho fixo no topo com sombra suave */
+header {
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Container flexível para logo e navegação */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+/* Logo com imagem e texto vertical */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  /* Ajuste a altura do logo para melhor exibição da nova imagem sem distorcer a proporção */
+  height: 80px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.logo span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: block;
+}
+
+/* Tagline opcional abaixo do nome da empresa */
+.logo-tagline {
+  font-size: 0.75rem;
+  color: var(--secondary-color);
+  font-style: italic;
+}
+
+/* Lista de links do menu */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  color: var(--primary-color);
+  padding: 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--secondary-color);
+}
+
+/* Botão de menu tipo hambúrguer */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+/* Animação do ícone hambúrguer quando o menu está aberto */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Comportamento responsivo para telas pequenas */
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--bg-color);
+    flex-direction: column;
+    padding: 1rem;
+    display: none;
+  }
+
+  nav ul.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav li {
+    margin-bottom: 0.5rem;
+  }
+}
